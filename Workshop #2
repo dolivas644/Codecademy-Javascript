@@ -1,0 +1,43 @@
+/*
+5. Write a function that takes 2 parameters of any data type named "varA" and "varB".
+If "varA" and "varB" are the same, return the string "varA and varB are equal". 
+Otherwise, return the string "varA and varB differ".
+*/
+
+//create a function with two parameters
+function areEqual(varA, varB) {
+//if statement checks if parameters are equivalent (does not have to be strictly equalt due to it being of any data type)
+  if (varA == varB) {
+  //return if equivalent
+    return 'varA and varB are equal';
+  } 
+  //return when different
+  return 'varA and varB differ';
+}
+
+//test cases
+console.log(areEqual('5', 5));
+console.log(areEqual([], ' '));
+console.log(areEqual('B', 'B'));
+
+/*
+6. Write a function that takes no parameters.
+The function should use a 'while' loop to print all the integers (whole numbers)
+between 5 and 10 (including 5 and 10). Use console.log in the function to print the numbers.
+*/
+
+//create function with no parameters
+function print5() {
+//declare i of value 5
+  let i = 5;
+  //use while loop to iterate from 5 to 10
+  while(i <= 10) {
+  //print numbers
+    console.log(i);
+    //inc. i by 1
+    i++;
+  }
+}
+
+//test case
+print5()
