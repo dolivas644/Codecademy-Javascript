@@ -1,0 +1,32 @@
+/*TASK
+Here we've defined an object userActivity, which includes another object nested within it. Set the value of the online key to 45.
+
+Bonus TASK
+Create a function that modify the data object inside userActivity, adding the key offline and the value 9.*/
+
+let userActivity = {
+  id: 23894201352,
+  date: 'January 1, 2017',
+  data: {
+    totalUsers: 51,
+    online: 42
+    //offline: 9,
+  }
+};
+
+//task 1 in dot & brack form, access object userActivity, data, online and change assignment to 45
+userActivity.data.online=45;
+//userActivity["data"]["online"]= 45;
+console.log(userActivity);
+
+//create function that has an argument of object
+function modifyObject(obj){
+  //adding new key
+  obj.data.offline = 9;
+  //changing key value
+  return obj;
+}
+//call function here
+modifyObject(userActivity);
+
+console.log(modifyObject(userActivity));
