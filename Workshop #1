@@ -1,0 +1,57 @@
+/*You are given the following three initial problems to pair program and solve. 
+Ensure to switch drives and make comments for each line that is esential*/
+
+
+//Print hello techtonica
+//create function for hello techtonica 
+function helloTechtonica() {
+    //return Hello Techtonica
+    return "Hello Techtonica";
+}
+
+//test case
+console.log(helloTechtonica);
+
+
+//print Hello Jo and Schmoe.
+//create function with a parameter that contains two arguments
+function helloPerson(name1, name2) {
+    //return statement Hello Jo and Schmoe.
+    return "Hello " + name1 + " and " + name2 + ".";
+}
+
+//test case
+console.log(helloPerson('Jo', 'Schmoe'));
+
+//Use if statement to check if num is greater than 5, in the middle or less than -10
+//create function with the argument num
+function greaterThan(num) {
+    //if statement checks if num is greater than 5
+    if (num > 5) {
+        return "Greater than 5.";
+        //if statement checks if num is less than -10
+    } else if (num < -10) {
+        return "Less than -10.";
+    }
+//prints any num that does not meet the other two conditions
+    else {
+        return "In the middle.";
+    }
+}
+
+console.log(greaterThan(7));
+
+/*create a function that prints true if the sum of both num is equivalent 
+to 10 or the num itself is 10*/
+
+//create function that takes two arguments
+function makes10(num1, num2) {
+    //checks if the sum is = 10 or the num = 10
+    if (num1 + num2 == 10 || num1 == 10 || num2 == 10 ) {
+        //prints true if it matches
+        return "true"
+    }
+}
+
+//test case
+console.log(makes10(9, 10));
