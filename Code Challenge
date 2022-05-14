@@ -1,0 +1,289 @@
+/*Code Challenge:
+Instructions
+In this exercise, you're a pizza chef who's also a software developer. You are going to write multiple functions related to cooking your world-famous pizza.
+
+You have five tasks. The first four are required, and the last one is optional (do it if you have more time and want an extra challenge!)
+
+1. Determine whether the pizza is done cooking
+This function will be used for a timer app to tell you if your pizza is ready.
+
+Write a function `pizzaStatus` that accepts the remaining time on the timer in minutes as a parameter. There are three possible results:
+If the remaining time is 0, it should return 'Pizza is done'
+If the remaining time is any other number,  it should return 'Keep waiting'
+If the function is called without a timer value,  it should return 'You forgot to set the timer'
+The input will never be a number below 0. Please remember to add your test cases! 
+
+pizzaStatus(12);
+// => 'Keep waiting'
+
+pizzaStatus();
+// => 'You forgot to set the timer'*/
+
+//create a function with a parameter for remaining minutes
+function pizzaStatus(remainingMinutes){
+  //first if function checks if timer is equal to 0 you return pizza is done
+  if(remainingMinutes===0){
+    return 'Pizza is done';
+  }
+  //2nd if , when the time is greater than 0 it returns keep waiting
+  else if(remainingMinutes>0){
+    return 'Keep waiting';
+  }
+  //last else,return you forgot to set the timer 
+  else{
+    return 'You forgot to set the timer';
+  }
+}
+//test input value 12 for remaining minutes on timer
+console.log(pizzaStatus(12));
+//test input blank for remaining minutes on timer
+console.log(pizzaStatus());
+
+//both test cases print out the correct answer 
+
+/*2. Calculate the preparation time
+For the next pizza that you will prepare, you want to know how long it will take to prepare. The preparation time depends on the number of toppings you're putting on the pizza. You have already decided which toppings to put on your pizza. Now you want to estimate how long the preparation will take.
+
+const toppings = ['eggplant', 'onions', 'peppers', 'meatballs', 'broccoli', 'mushrooms'];
+
+Implement a function ` prepTime` that accepts an array of toppings and the average preparation time per toppings in minutes. The function should return the estimate for the total preparation time based on the number of toppings. If the function is called without providing the average preparation time, 2 minutes should be assumed instead. Please remember to add your test cases! 
+
+prepTime(toppings, 3);
+// => 18
+
+prepTime(toppings);
+// => 12*/
+
+
+//declare global arr toppings(given) so it can be read
+const toppings = ['eggplant', 'onions', 'peppers', 'meatballs', 'broccoli', 'mushrooms'];
+//create function with parameters, array toppings and avgPrepTime
+function prepTime(toppings, avgPrepTime){
+  //declare var that will get the number of toppings in the array
+  let toppingsLength = toppings.length;
+  //if the given average prep time is greater than or equal to zero follow...
+  if(avgPrepTime>=0){
+    //calculate the number of toppings times the average prep time given
+  return toppingsLength*avgPrepTime;
+  }
+  //if prep time is not given or not appropiate return the num of toppings times 2 
+  else{
+    return toppingsLength*2;
+  }
+}
+//Test case input toppings and avgPrepTime of 3
+console.log(prepTime(toppings, 3));
+//Test case input toppings and avgPrepTime not given
+console.log(prepTime(toppings));
+
+//both test cases print out the correct answer
+
+/*3. Compute the amounts of sauce and cheese needed
+In your recipe, the more toppings you have, the more sauce and cheese you need to put on the pizza. Through a very scientific process, you've discovered the toppings that start with the letter "m" need 2 ounces of cheese and 3 ounces of sauce. All other toppings need 1 ounce of cheese and 1 ounce of sauce. (This is a weird recipe!)
+
+Define a function 'calculateSauceAndCheese' that takes an array of toppings as a parameter. The function will then determine the quantity of sauce and cheese needed to make your pizza. The result should be returned as an object with two keys: 'sauce' and 'cheese'. Please remember to add your test cases! 
+
+calculateSauceAndCheese(toppings);
+
+As an example, let's say the toppings array is: ['eggplant', 'onions', 'peppers', 'meatballs', 'broccoli', 'mushrooms']. 
+There are 2 toppings that start with "m" and 4 other toppings. 
+The amount of cheese needed is 2 ounces * 2 toppings + 1 ounce * 4 toppings, which is 8 ounces total.
+The amount of sauce needed is 3 ounces * 2 toppings + 1 ounce * 4 toppings, which is 10 ounces total. 
+Please remember to add your test cases! 
+
+
+calculateSauceAndCheese(toppings);
+// => { cheese: 8, sauce: 10 }*/
+
+
+//Method #1
+
+//create array toppings with the given properties for toppings
+//const toppings=['eggplant', 'onions', 'peppers', 'meatballs', 'broccoli', 'mushrooms'];
+//create a funtion that takes the argument toppings as a parameter
+function calculateSauceAndCheese(toppings){
+  //create variable placxeholders for cheese total, sauce total, add ons, and toppings that do not start with m
+  let cheeseTotal = 0;
+  let sauceTotal= 0;
+  let addOns = 0;
+  let notMToppings = 0;
+
+  //create a for loop that goes from start of array to the end of it
+  for(let i= 0; i<toppings.length;i++){
+    //if statement checks for the words that start with 'm'
+    if(toppings[i].charAt(0)==='m'){
+      //add ons gets counts of those that start with m
+      addOns+=1;
+      //calculate the total cheese needed by multiplying the count by 2
+      cheeseTotal = 2* addOns;
+      //calculate the total sauce needed by multiplying the count by 3
+      sauceTotal = 3 * addOns;
+    }else{
+      //those that do not have m at index 0 will have base value of one and will increment through the for loop
+      notMToppings+=1;
+    }
+    
+  }
+  //add cheese total to notMToppings and suacetotal to notMToppings, to get their overall total ingredients needed
+  cheeseTotal = cheeseTotal + notMToppings;
+  sauceTotal = sauceTotal + notMToppings;
+  //return in {cheese: , sauce: }
+  return "{cheese: " + cheeseTotal + ", sauce: " + sauceTotal + "}";
+}     
+//test case
+console.log(calculateSauceAndCheese(toppings));
+
+//Method #2
+//create array toppings with the given properties (was declared in method 1)
+//const toppings=['eggplant', 'onions', 'peppers', 'meatballs', 'broccoli', 'mushrooms'];
+
+//create a funtion that takes the argument toppings as a parameter
+function calculateSauceAndCheese(toppings){
+  //create variable placxeholders for cheese total, sauce total, toppings that start with m, and toppings that do not start with m, and 
+  let cheeseTotal = 0;
+  let sauceTotal= 0;
+  let mToppings = 0;
+  let notMToppings = 0;
+  
+
+  //create a for loop that goes from start of array to the end of it
+  for(let i= 0; i<toppings.length;i++){
+    //if statement checks for the words that start with 'm'
+    if(toppings[i].charAt(0)==='m'){
+      //add ons gets counts of those that start with m
+      mToppings+=1;
+      //calculate the total cheese needed by multiplying the count by 2
+      cheeseTotal = 2* mToppings;
+      //calculate the total sauce needed by multiplying the count by 3
+      sauceTotal = 3 * mToppings;
+    }else{
+      //those that do not have m at index 0 will have base value of one and will increment through the for loop
+      notMToppings+=1;
+    }
+    
+  }
+  //add cheese total to notMToppings and saucetotal to notMToppings, to get their overall total ingredients needed
+  cheeseTotal = cheeseTotal + notMToppings;
+  sauceTotal = sauceTotal + notMToppings;
+ 
+  //create an object that has the two keys: cheese, sauce
+  const overallTotalObject={
+  cheese: 0,
+  sauce: 0
+};
+    //return in {cheese: , sauce: }, update the key values for cheese and suace with their new total
+  overallTotalObject.cheese= cheeseTotal;
+  overallTotalObject.sauce= sauceTotal;
+  //return object
+  return console.log(overallTotalObject)
+}  
+//test case
+console.log(calculateSauceAndCheese(toppings));
+
+//both method 1 & 2 test cases print out the correct answer
+
+/*4. Add the secret ingredient
+
+You visited your friend in Italy and ate the pizza that she made. It was amazing and had something special to it. The friend sent you the list of ingredients and told you the last item on the list is the "secret ingredient" that made the pizza so special. Now you want to add that secret ingredient to your recipe as well.
+
+Write a function addSecretIngredient that accepts two arrays of ingredients as parameters. The first parameter is the list your friend sent you, the second is the ingredient list for your own recipe. The function should add the last item from your friend’s list to the end of your list. The array that represents your recipe should be modified directly and the function should not return anything. However, the first argument should not be modified.
+Please remember to add your test cases! 
+
+const friendsList = ['onions', 'olives', 'mozzarella', 'anchovies'];
+const myList = ['meatballs', 'onions', 'chicken', 'mozzarella'];
+
+addSecretIngredient(friendsList, myList);
+// => undefined
+
+console.log(myList);
+// => ['meatballs', 'onions', 'chicken', 'mozzarella', 'anchovies']*/
+//declare the array for friends recipe list
+const friendsList = ['onions', 'olives', 'mozzarella', 'anchovies'];
+//declare array for my recipe list
+const myList = ['meatballs', 'onions', 'chicken', 'mozzarella'];
+
+//create function that passes the two previously declared arrays as parameter
+function addSecretIngredient(friendsList, myList){
+  //take last element from your friends list using length-1 and .push to move it to the end of my list
+    myList.push(friendsList[friendsList.length - 1]);
+}
+
+// => undefined, test case
+console.log(addSecretIngredient(friendsList, myList));
+// => ['meatballs', 'onions', 'chicken', 'mozzarella', 'anchovies'], test case
+console.log(myList);
+
+//both test cases print out the correct answer
+
+/* 5. (Bonus problem) Scale the recipe
+This problem is optional. You don't need to do it as part of the application process. But you can if you have extra time and want an extra challenge.
+
+The recipe listed in your cookbook only makes enough pizza for two people. Since you want to cook for more people next time, you want to calculate the amounts for different numbers of portions.
+
+Implement a function scalePizzaRecipe that takes two parameters. Parameter 1: A recipe object that holds the amounts needed for 2 portions, the format of the object can be seen in the example. Parameter 2: The number of portions you want to cook.
+
+The function should return a recipe object with the amounts needed for the desired number of portions. You want to keep the original recipe, though. This means that in this task, the recipe argument should not be modified.
+Please remember to add your test cases! 
+
+const recipe = {
+  pepperoni: 16,
+  sauce: 0.4,
+  mozzarella: 1,
+  meatballs: 100,
+};
+
+scalePizzaRecipe(recipe, 8);
+// =>
+// {
+//   pepperoni: 64,
+//   sauce: 1.6,
+//   mozzarella: 4,
+//   meatballs: 400,
+// };
+
+console.log(recipe);
+// =>
+// {
+//   pepperoni: 16,
+//   sauce: 0.4,
+//   mozzarella: 1,
+//   meatballs: 100,
+// };*/
+
+//declare the given recipe list
+const recipe = {
+  pepperoni: 16,
+  sauce: 0.4,
+  mozzarella: 1,
+  meatballs: 100,
+};
+
+//create function that takes recipe and number of portions(numOfPortions)
+function scalePizzaRecipe (recipe, numOfPortions = 0) {
+  //create empty object for the new recipe when scaled
+  const scaledPizza = {}
+  //get the key recipe and for each scale it  to the new empty object with the modifiers that implicate recipe was reduced in half and was multipled to the number of portions
+  Object.keys(recipe).forEach(key => scaledPizza[key] = (recipe[key] * numOfPortions) / 2);
+  //return the object with the new key info which is scaled by 1/2 and * num of portions
+  return scaledPizza;
+  
+}    
+
+//test case
+console.log(scalePizzaRecipe(recipe, 8));
+// =>
+// {
+//   pepperoni: 64,
+//   sauce: 1.6,
+//   mozzarella: 4,
+//   meatballs: 400,
+// };
+
+//test case
+console.log(recipe);
+// =>
+// {
+//   pepperoni: 16,
+//   sauce: 0.4,
+//   mozzarella: 1,
+//   meatballs: 100,
